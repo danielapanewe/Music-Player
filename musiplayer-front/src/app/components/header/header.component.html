@@ -1,0 +1,36 @@
+<header class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <span class="text-xl font-bold">🎧 MyMusic</span>
+        </div>
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="hover:text-gray-300">Accueil</a>
+          <a href="#" class="hover:text-gray-300">Albums</a>
+          <a href="#" class="hover:text-gray-300">Contact</a>
+        </div>
+        <div class="md:hidden">
+          <button (click)="toggleMenu()" class="focus:outline-none">
+            <svg *ngIf="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg *ngIf="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Menu -->
+    <div *ngIf="mobileMenuOpen" class="md:hidden px-4 pb-4">
+      <a href="#" class="block py-2 border-b border-gray-700 hover:text-gray-300">Accueil</a>
+      <a href="#" class="block py-2 border-b border-gray-700 hover:text-gray-300">Albums</a>
+      <a href="#" class="block py-2 hover:text-gray-300">Contact</a>
+    </div>
+  </header>
+  

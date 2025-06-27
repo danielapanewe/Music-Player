@@ -1,0 +1,92 @@
+
+<app-header></app-header>
+
+
+  <!-- component -->
+<div class="">
+
+   
+  
+    <div class=" bg-white  shadow-lg overflow-hidden" >
+      <div class="relative w-full h-[400px] bg-cover bg-center"  [ngStyle]="{ 'background-image': 'url(' + album?.image + ')' }">
+          <div class="absolute p-4 inset-0 flex flex-col justify-end bg-gradient-to-b from-transparent to-gray-900 backdrop backdrop-blur-5 text-white">
+        <div class="flex justify-end it p-4 mb-[16rem]">
+            <button (click)="openModal()" class="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              + Ajouter un son
+            </button>
+          </div>
+        
+          <h3 class="font-bold mx-10">{{ album?.name }}</h3>
+          <span class="opacity-70 mx-10">{{ album?.desc }}</span>
+        </div>
+      </div>
+  
+    
+      <ul class="text-xs sm:text-base divide-y border-t cursor-default">
+        <li class="flex items-center space-x-3   mx-10"  *ngFor="let song of songs">
+
+            <div class="flex ">
+
+                <button class="px-2 hover:bg-gray-200 group focus:outline-none" (click)="playSong(song.file)">
+                    <svg class="w-4 h-4 group-hover:text-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </button>
+
+                <!-- Bouton Pause -->
+                <button class="px-1 hover:bg-gray-200 group focus:outline-none" (click)="pauseSong()">
+                    <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="6" y="4" width="4" height="16"></rect>
+                      <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                  </button>
+  
+  <!-- Bouton Stop -->
+  <button class="px-1 hover:bg-gray-200 group focus:outline-none" (click)="stopSong()">
+    <svg class="w-4 h-4 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="6" width="12" height="12"></rect>
+    </svg>
+  </button>
+            </div>
+         
+<div class="flex justify-between w-full ">
+    <div class="flex  gap-2 items-center justify-center">
+        <img [src]="song.image" alt="Song image" class="w-15 h-15 rounded-xl p-3 mr-4 overflow-hidden " />
+       <p> {{ song.name }}</p>
+      </div>
+     
+      <div class="flex gap-2 items-center">
+
+          <div class="text-xs text-gray-400">
+          {{song.duration}}
+          </div>
+          <button class="focus:outline-none pr-4 group" (click)="deleteSong(song._id)">
+            🗑️
+          </button>
+      </div>
+</div>
+       
+        </li>
+     
+      </ul>
+    </div>
+  </div>
+
+
+
+<!-- MODAL -->
+<div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-100">
+    <div class="bg-white p-6 rounded-lg w-96 relative">
+      <h2 class="text-black text-2xl mb-4 text-center font-semibold mb-8">Ajouter un son</h2>
+  
+      <form (submit)="addSong()">
+        <input [(ngModel)]="name" name="name" placeholder="Nom du son" class="w-full p-2 rounded mb-5 bg-white shadow-lg border border-gray-100" required />
+        <input [(ngModel)]="desc" name="desc" placeholder="Description" class="w-full p-2 rounded mb-5 bg-white shadow-lg border border-gray-100" required />
+        <input type="file" (change)="onAudioChange($event)" accept="audio/*" class="mb-5"/>
+        <input type="file" (change)="onImageChange($event)" accept="image/*" class="mb-5"/>
+        <div class="flex justify-end">
+          <button type="button" (click)="closeModal()" class="mr-2 bg-gray-600 text-white px-3 py-1 rounded">Annuler</button>
+          <button type="submit" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

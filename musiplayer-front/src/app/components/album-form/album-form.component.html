@@ -1,0 +1,47 @@
+
+
+<div style="background-color: rgba(0, 0, 0, 0.80);" class="fixed inset-0  z-50 flex items-center justify-center p-4" >
+    <!-- <img src="/chronoscotch.png" alt="" class="absolute top-0 left-0 rotate-[12.2rad] transform -translate-x-1/2 -translate-y-1/2 w-40">-->
+     <div class="background relative w-full max-w-3xl bg-white rounded-lg shadow-2xl p-4 md:p-8 overflow-auto max-h-[90vh]">
+        
+      
+        
+            
+        
+         
+         <h2 class="title   text-2xl md:text-3xl font-bold pb-8 text-center px-12">Nouvel album</h2>
+         <form (ngSubmit)="submit()" enctype="multipart/form-data" class="space-y-4 p-4  w-full ">
+            <div class="mb-8">
+              <label class="block text-sm font-medium text-gray-700">Nom de l'album</label>
+              <input type="text" [(ngModel)]="album.name" name="name" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required />
+            </div>
+          
+            <div class="mb-8">
+              <label class="block text-sm font-medium text-gray-700">Description</label>
+              <textarea [(ngModel)]="album.desc" name="desc" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+            </div>
+          
+            <div class="mb-8">
+              <label class="block text-sm font-medium text-gray-700">Couleur de fond</label>
+              <input type="color" [(ngModel)]="album.bgColour" name="bgColour" class="w-16 h-10 mt-1" />
+            </div>
+          
+            <div class="mb-8">
+              <label class="block text-sm font-medium text-gray-700">Image de l'album</label>
+              <input type="file" (change)="onFileChange($event)" accept="image/*" class="mt-1 block w-full" required />
+            </div>
+          <div class="flex justify-end ">
+
+              <button type="submit" class="  bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Créer l'album</button>
+          </div>
+          </form>
+         <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-(--color-primary) hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" (click)="closeModal()" aria-label="close modal" role="button">
+             <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                 <path stroke="none" d="M0 0h24v24H0z" />
+                 <line x1="18" y1="6" x2="6" y2="18" />
+                 <line x1="6" y1="6" x2="18" y2="18" />
+             </svg>
+         </button>
+     </div>
+ </div>
+ 
