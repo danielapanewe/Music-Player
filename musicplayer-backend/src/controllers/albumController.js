@@ -27,6 +27,19 @@ const addAlbum = async (req, res) => {
         res.status(400).json({ success: false, message: "Album Add Failed" })
     }
 }
+const getAlbumById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const album = await Album.findById(id);
+        if (!album) {
+            return res.status(404).json({ success: false, message: "Album not found" });
+        }
+        res.status(200).json({ success: true, album });
+    } catch (error) {
+        console.log('Failed at getAlbumById, ', error);
+        res.status(400).json({ success: false, message: "Failed to get album" });
+    }
+};
 
 const listAlbum = async (req, res) => {
     try {
@@ -56,4 +69,4 @@ const removeAlbum = async (req, res) => {
     }
 }
 
-export { addAlbum, listAlbum, removeAlbum }
+export { addAlbum, listAlbum, removeAlbum,getAlbumById  }
